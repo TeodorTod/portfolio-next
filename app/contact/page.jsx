@@ -143,7 +143,7 @@ const Contact = () => {
               />
               <div className="flex justify-center">
                 <Button type="submit" size="md" className="max-w-40">
-                  Send message
+                  Send message123
                 </Button>
               </div>
             </form>
