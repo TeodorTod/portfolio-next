@@ -146,7 +146,7 @@ const Resume = () => {
                     return (
                       <li key={index} className="grid grid-cols-[auto,1fr] gap-4 items-center">
                       <span className="text-white/60">{item.filedName}</span>
-                      <span className="text-xl min-w-[313px]">{item.fieldValue}</span>
+                      <span className="text-xl xl:min-w-[313px]">{item.fieldValue}</span>
                     </li>
                     );
                   })}
