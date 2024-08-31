@@ -39,7 +39,7 @@ const MobileNav = () => {
                 <CiMenuFries className="text=[32px] text-orange-400" />
             </SheetTrigger>
             <SheetContent className="flex flex-col">
-                <div className="mt-32 mb-40 text-center text-2xl">
+                <div className="mt-32 mb-10 text-center text-2xl">
                     <Link href="/" onClick={handleLinkClick}>
                         <h1 className="text-4xl font-semibold">
                             TTod<span className="text-orange-400">.</span>
