@@ -9,6 +9,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const info = [
   {
@@ -36,13 +37,23 @@ const Contact = () => {
     phone: "",
     message: "",
   });
+  const [captchaToken, setCaptchaToken] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!captchaToken) {
+      toast.error("Please complete the CAPTCHA to submit the form.");
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -54,7 +65,8 @@ const Contact = () => {
           htmlContent: `<p>You have a new message from ${formData.firstname} ${formData.lastname}:</p>
                         <p>Email: ${formData.email}</p>
                         <p>Phone: ${formData.phone}</p>
-                        <p>Message: ${formData.message}</p>`,
+                        <p>Message: ${formData.message}</p>
+                        <p>reCAPTCHA Token: ${captchaToken}</p>`,
         },
         {
           headers: {
@@ -134,7 +146,11 @@ const Contact = () => {
                 onChange={handleChange}
                 required
               />
-              <div className="flex justify-center">
+              <ReCAPTCHA
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} 
+                onChange={handleCaptchaChange}
+              />
+              <div className="flex justify-center mt-4">
                 <Button type="submit" size="md" className="max-w-40">
                   Send message
                 </Button>
