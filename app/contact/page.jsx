@@ -5,18 +5,10 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const info = [
   {
@@ -51,7 +43,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await axios.post(
         "https://api.brevo.com/v3/smtp/email",
@@ -71,16 +63,16 @@ const Contact = () => {
           },
         }
       );
-  
+
       if (response.status === 201) {
-        alert("Message sent successfully!");
+        toast.success("Message sent successfully!");
       }
     } catch (error) {
       console.error("There was an error sending the email:", error);
-      alert("An error occurred. Please try again later.");
+      toast.error("An error occurred. Please try again later.");
     }
   };
-  
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -90,6 +82,7 @@ const Contact = () => {
       }}
       className="py-6"
     >
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row gap-[30px]">
           <div className="xl:w-[54%] order-2 xl:order-none">
