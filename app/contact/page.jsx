@@ -202,7 +202,12 @@ const Contact = () => {
                 onChange={handleCaptchaChange}
               />
               <div className="flex justify-center mt-4">
-                <Button type="submit" size="md" className="max-w-40" disabled={!isFormValid()}>
+                <Button
+                  type="submit"
+                  size="md"
+                  className={`max-w-40 ${!isFormValid() ? 'bg-gray-500 cursor-not-allowed' : ''}`}
+                  disabled={!isFormValid()}
+                >
                   Send message
                 </Button>
               </div>
