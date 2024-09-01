@@ -37,21 +37,44 @@ const Contact = () => {
     phone: "",
     message: "",
   });
+  const [errors, setErrors] = useState({});
   const [captchaToken, setCaptchaToken] = useState(null);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    if (value.trim() === "") {
+      setErrors({ ...errors, [name]: "This field is required" });
+    } else {
+      setErrors({ ...errors, [name]: "" });
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    if (value.trim() === "") {
+      setErrors({ ...errors, [name]: "This field is required" });
+    }
   };
 
   const handleCaptchaChange = (token) => {
     setCaptchaToken(token);
   };
 
+  const isFormValid = () => {
+    return (
+      Object.values(formData).every((field) => field.trim() !== "") &&
+      captchaToken !== null &&
+      Object.values(errors).every((error) => error === "")
+    );
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!captchaToken) {
-      toast.error("Please complete the CAPTCHA to submit the form.");
+    if (!isFormValid()) {
+      toast.error("Please complete all required fields.");
       return;
     }
 
@@ -78,6 +101,14 @@ const Contact = () => {
 
       if (response.status === 201) {
         toast.success("Message sent successfully!");
+        setFormData({
+          firstname: "",
+          lastname: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+        setCaptchaToken(null);
       }
     } catch (error) {
       console.error("There was an error sending the email:", error);
@@ -105,53 +136,73 @@ const Contact = () => {
                 message. I'll get back to you as soon as possible.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                  name="firstname"
-                  type="text"
-                  placeholder="Firstname"
-                  value={formData.firstname}
-                  onChange={handleChange}
-                  required
-                />
-                <Input
-                  name="lastname"
-                  type="text"
-                  placeholder="Lastname"
-                  value={formData.lastname}
-                  onChange={handleChange}
-                  required
-                />
-                <Input
-                  name="email"
-                  type="email"
-                  placeholder="Email address"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-                <Input
-                  name="phone"
-                  type="text"
-                  placeholder="Phone number"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
+                <div>
+                  <Input
+                    name="firstname"
+                    type="text"
+                    placeholder="Firstname"
+                    value={formData.firstname}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    required
+                  />
+                  {errors.firstname && <p className="text-red-500 text-sm">{errors.firstname}</p>}
+                </div>
+                <div>
+                  <Input
+                    name="lastname"
+                    type="text"
+                    placeholder="Lastname"
+                    value={formData.lastname}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    required
+                  />
+                  {errors.lastname && <p className="text-red-500 text-sm">{errors.lastname}</p>}
+                </div>
+                <div>
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="Email address"
+                    value={formData.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    required
+                  />
+                  {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                </div>
+                <div>
+                  <Input
+                    name="phone"
+                    type="text"
+                    placeholder="Phone number"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    required
+                  />
+                  {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
+                </div>
               </div>
-              <Textarea
-                name="message"
-                className="h-[200px]"
-                placeholder="Type your message here."
-                value={formData.message}
-                onChange={handleChange}
-                required
-              />
+              <div>
+                <Textarea
+                  name="message"
+                  className="h-[200px]"
+                  placeholder="Type your message here."
+                  value={formData.message}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  required
+                />
+                {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
+              </div>
               <ReCAPTCHA
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} 
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} // Your reCAPTCHA site key
                 onChange={handleCaptchaChange}
               />
               <div className="flex justify-center mt-4">
-                <Button type="submit" size="md" className="max-w-40">
+                <Button type="submit" size="md" className="max-w-40" disabled={!isFormValid()}>
                   Send message
                 </Button>
               </div>
