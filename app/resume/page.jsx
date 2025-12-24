@@ -15,6 +15,10 @@ import {
   SiTypescript,
   SiExpress,
   SiGit,
+  SiNestjs,
+  SiPrimeng,
+  SiPostgresql,
+  SiDocker,
 } from "react-icons/si";
 import { DiMongodb } from "react-icons/di";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -24,7 +28,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion } from "framer-motion";
 
 const about = {
@@ -76,6 +79,10 @@ const skills = {
       name: "JavaScript",
     },
     {
+      icon: <SiTypescript />,
+      name: "TypeScript",
+    },
+    {
       icon: <FaReact />,
       name: "React.js",
     },
@@ -84,32 +91,44 @@ const skills = {
       name: "Angular",
     },
     {
-      icon: <FaNodeJs />,
-      name: "Node.js",
+      icon: <SiNextdotjs />,
+      name: "Next.js",
     },
     {
       icon: <SiTailwindcss />,
       name: "Tailwind CSS",
     },
     {
-      icon: <SiNextdotjs />,
-      name: "Next.js",
+      icon: <SiPrimeng />,
+      name: "PrimeNG",
     },
     {
-      icon: <SiTypescript />,
-      name: "TypeScript",
+      icon: <FaNodeJs />,
+      name: "Node.js",
     },
     {
       icon: <SiExpress />,
       name: "Express.js",
     },
     {
+      icon: <SiNestjs />,
+      name: "NestJS",
+    },
+    {
       icon: <DiMongodb />,
       name: "MongoDB",
     },
     {
+      icon: <SiPostgresql />,
+      name: "PostgreSQL",
+    },
+    {
       icon: <SiGit />,
       name: "Git",
+    },
+    {
+      icon: <SiDocker />,
+      name: "Docker",
     },
   ],
 };
