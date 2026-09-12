@@ -1,39 +1,39 @@
 "use client";
 
-import { FaCode, FaUser, FaChartLine, FaNode } from 'react-icons/fa';
+import { FaCode, FaNode, FaLayerGroup, FaCodeBranch } from 'react-icons/fa';
 import { motion } from "framer-motion";
 
 const services = [
   {
     num: "01",
-    title: "Front-end web development",
+    title: "Front-end Web Development",
     description:
-      "I specialize in creating responsive and dynamic user interfaces using React and Angular. My focus is on delivering sleek, user-friendly designs that work seamlessly across all devices.",
+      "I build responsive, scalable, and maintainable user interfaces using Angular, React, and TypeScript. I focus on clean architecture, performance, reusable components, and seamless integration with back-end services.",
     icon: <FaCode style={{ fontSize: '3rem' }} />, 
     href: "",
   },
   {
     num: "02",
-    title: "Back-end web development",
+    title: "Back-end & API Development",
     description:
-      " I build robust and scalable server-side applications using Node.js and Express.js. My goal is to create efficient and secure back-end solutions that power your web applications effectively.",
+      "I develop secure and scalable server-side applications using Node.js, NestJS, and Express.js, including REST APIs, authentication, database integration, and third-party service integrations.",
     icon: <FaNode style={{ fontSize: '2rem' }} />, 
     href: "",
   },
   {
     num: "03",
-    title: "UI/UX Design",
+    title: "Full-Stack Application Development",
     description:
-      " I design intuitive and visually appealing user interfaces that enhance user experience. My designs prioritize functionality and ease of use, ensuring your users enjoy every interaction.",
-    icon: <FaUser style={{ fontSize: '3rem' }} />,
+      "I build complete web applications from front end to back end, combining modern JavaScript technologies, APIs, databases, authentication, and deployment-ready architecture.",
+    icon: <FaLayerGroup style={{ fontSize: '3rem' }} />,
     href: "",
   },
   {
     num: "04",
-    title: "SEO",
+    title: "Application Modernization & Integration",
     description:
-      "I help improve your website's visibility on search engines(Google, Bing, Yahoo etc.), driving more organic traffic and increasing your online presence with effective SEO strategies.",
-    icon: <FaChartLine style={{ fontSize: '3rem' }} />, 
+      "I improve and extend existing applications through API integrations, code refactoring, performance optimization, Docker-based environments, and modernization of legacy functionality.",
+    icon: <FaCodeBranch style={{ fontSize: '3rem' }} />,
     href: "",
   },
 ];
