@@ -16,8 +16,7 @@ const Home = () => {
               <span className="text-accent">Teodor Todorov</span>{" "}
             </h1>
             <p className="max-w-[500px] mb-9 text-white/80">
-              I'm working as a full-stack web developer and I am proficient in
-              different technologies
+            I’m a Senior Frontend & Full-Stack Developer focused on building scalable, maintainable, and user-friendly web applications with Angular, React, TypeScript, Node.js, and modern web technologies.
             </p>
             <div className="flex flex-col xl:flex-row items-center gap-8">
               <a href="/assets/TeodorTodorovResume.pdf" download>

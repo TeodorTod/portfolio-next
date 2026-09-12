@@ -33,7 +33,7 @@ import { motion } from "framer-motion";
 const about = {
   title: "About me",
   description:
-    "As a passionate and dedicated JavaScript Developer, I have a strong front-end and back-end development foundation. My journey in the tech world is marked by a commitment to continuous learning and applying best practices in software development. I strive to deliver high-quality, scalable, and user-friendly web applications that meet client needs and exceed expectations.",
+    "I’m a Senior Frontend & Full-Stack Developer with strong experience building scalable, maintainable, and user-focused web applications. My core expertise is in Angular, React, TypeScript, Node.js, and modern full-stack development. I focus on clean architecture, performance, reusable solutions, and reliable integrations, with an emphasis on delivering high-quality software that solves real business needs.",
   info: [
     {
       filedName: "Name",
